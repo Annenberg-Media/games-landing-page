@@ -1,78 +1,202 @@
 <html data-theme="light" lang="en">
-
 <body>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-<script src="https://cdn.tailwindcss.com"></script>
-<style>
-    .modal-content {
-        background-color: #faf1e4;
-        height: 82vh;
-        width: 45vh;
-    }
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* General modal styles */
+        .modal-content {
+            background-color: #faf1e4;
+            border-radius: 8px;
+        }
 
-    .modal-header {
-        border-bottom: none;
-    }
+        /* Modal for tall content */
+        .modal-tall .modal-content {
+            height: 90vh;
+            width: 60vw;
+        }
 
-    .modal-dialog-centered {
-        justify-content: center;
-        align-items: center;
-    }
+        /* Modal for compact content */
+        .modal-compact .modal-content {
+            height: 50vh;
+            width: 50vw;
+        }
 
-    iframe {
-        width: 100%;
-        height: 100%;
-        user-select: none;
-        border: none;
-    }
+        .modal-header {
+            border-bottom: none;
+        }
 
-    .placeholder {
-        visibility: hidden;
-    }
+        .modal-body iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
 
-    .description {
-        line-height: 1.3em;
-        min-height: 2.6em;
-    }
-</style>
+        .placeholder {
+            visibility: hidden;
+        }
 
-<h1
-        class="text-3xl p-10 text-center font-bold from-purple-600 via-pink-600 to-blue-600 bg-gradient-to-r bg-clip-text text-transparent">
-    Games
-</h1>
+        .description {
+            line-height: 1.3em;
+            min-height: 2.6em;
+        }
 
-<section class="text-gray-600 body-font">
-    <div class="container px-5 py-24 mx-auto">
-        <div class="flex flex-row flex-wrap -m-4 justify-center">
-            <!-- First Game Block -->
-            <div id="earth-game" class="p-4 md:w-1/3">
-                <div class="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
-                    <img class="lg:h-48 md:h-36 w-full object-cover object-center"
-                         src="assets/climate-action-banner.png" alt="blog">
-                    <div class="p-6 text-center">
-                        <h2 class="tracking-widest text-xs title-font font-medium text-gray-400 mb-6">CLIMATE
-                            ACTION DAY 2023</h2>
-                        <h1 class="title-font text-xl font-medium text-gray-900 mb-2">Save The Trojan</h1>
-                        <p class="description leading-relaxed mb-6 text-sm">Escape from the falling waste!</p>
-                        <div class="flex items-center flex-wrap flex-col text-center">
-                            <button type="button"
-                                    class="text-[#63c46d] bg-[#63c46d22] hover:bg-[#63c46d44] pl-8 pr-8 pb-2 pt-2 rounded-md font-bold"
-                                    data-bs-toggle="modal" data-bs-target="#windowModal">PLAY</button>
+        /* Hide football game on small screens */
+        @media (max-width: 768px) {
+            #football-game {
+                display: none;
+            }
 
-                            <div id="windowModal" class="modal fade" data-bs-backdrop="false"
-                                 data-bs-keyboard="false" tabindex="-1" aria-labelledby="windowModalLabel"
-                                 aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                    aria-label="Close"></button>
+            /* Adjust modal for mobile */
+            .modal-content {
+                width: 90vw !important;
+                height: 90vh !important;
+            }
+        }
+
+        #footballRules {
+            position: fixed;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            z-index: 1050;
+            display: none;
+            max-width: 400px;
+            width: 90%;
+            background-color: #faf1e4;
+            border-radius: 12px;
+            padding: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        #footballRules h2 {
+            margin-bottom: 10px;
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        #footballRules img {
+            width: 100%;
+            border-radius: 8px;
+        }
+
+        @media (max-width: 1200px) {
+            #footballRules {
+                max-width: 300px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            #gameExpfootballRuleslanation {
+                max-width: 200px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            #footballRules {
+                display: none;
+            }
+        }
+    </style>
+
+    <h1 class="text-3xl p-10 text-center font-bold from-purple-600 via-pink-600 to-blue-600 bg-gradient-to-r bg-clip-text text-transparent">
+        Games
+    </h1>
+
+    <section class="text-gray-600 body-font">
+        <div class="container px-5 py-24 mx-auto">
+            <div class="flex flex-row flex-wrap -m-4 justify-center">
+
+                <!-- First Game Block (commented out as per request) -->
+                <!--
+                <div id="earth-game" class="p-4 md:w-1/3">
+                    <div class="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
+                        <img class="lg:h-48 md:h-36 w-full object-cover object-center"
+                             src="assets/climate-action-banner.png" alt="blog">
+                        <div class="p-6 text-center">
+                            <h2 class="tracking-widest text-xs title-font font-medium text-gray-400 mb-6">CLIMATE
+                                ACTION DAY 2023</h2>
+                            <h1 class="title-font text-xl font-medium text-gray-900 mb-2">Save The Trojan</h1>
+                            <p class="description leading-relaxed mb-6 text-sm">Escape from the falling waste!</p>
+                            <div class="flex items-center flex-wrap flex-col text-center">
+                                <button type="button"
+                                        class="text-[#63c46d] bg-[#63c46d22] hover:bg-[#63c46d44] pl-8 pr-8 pb-2 pt-2 rounded-md font-bold"
+                                        data-bs-toggle="modal" data-bs-target="#earthGameModal">PLAY</button>
+
+                                <div id="earthGameModal" class="modal fade modal-tall" data-bs-backdrop="false"
+                                     data-bs-keyboard="false" tabindex="-1" aria-labelledby="earthGameModalLabel"
+                                     aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <iframe id="gameFrame"
+                                                        src="https://rittmang.github.io/earth-special-game"
+                                                        scrolling="no"></iframe>
+                                            </div>
                                         </div>
-                                        <div class="modal-body">
-                                            <iframe id="gameFrame"
-                                                    src="https://rittmang.github.io/earth-special-game"
-                                                    scrolling="no"></iframe>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                -->
+
+                <!-- Second Game Block (Quiz Game) -->
+                <div id="interactives-quiz" class="p-4 md:w-1/3">
+                    <div class="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
+                        <div class="flex justify-center items-center h-48 p-3 bg-gray-200">
+                            <img class="w-full object-contain" src="assets/interactives-quiz-header.gif" alt="quiz logo">
+                        </div>
+                        <div class="p-6 text-center">
+                            <h2 class="placeholder tracking-widest text-xs title-font font-medium text-gray-400 mb-6">Placeholder</h2>
+                            <h1 class="title-font text-xl font-medium text-gray-900 mb-2">USC News Quiz</h1>
+                            <p class="description leading-relaxed mb-6 text-sm">Test your knowledge on the latest news from campus</p>
+                            <div class="flex items-center flex-wrap flex-col text-center">
+                                <a href="https://annenberginteractives.com/2024-2025/quiz" target="_blank"
+                                   class="text-[#63c46d] bg-[#63c46d22] hover:bg-[#63c46d44] pl-8 pr-8 pb-2 pt-2 rounded-md font-bold no-underline">PLAY</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Third Game Block (Football Game) -->
+                <div id="football-game" class="p-4 md:w-1/3">
+                    <div class="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
+                        <div class="flex justify-center items-center h-48 bg-gray-200">
+                            <img class="w-full object-contain"
+                                 src="https://cloudfront-us-east-1.images.arcpublishing.com/uscannenberg/LKZJIHKB4FCDVFGGSS2LY3BEKA.gif"
+                                 alt="quiz logo">
+                        </div>
+                        <div class="p-6 text-center">
+                            <h2 class="tracking-widest text-xs title-font font-medium text-gray-400 mb-6 placeholder">Placeholder</h2>
+                            <h1 class="title-font text-xl font-medium text-gray-900 mb-2">Football Derby</h1>
+                            <p class="description leading-relaxed mb-6 text-sm">Do you have what it takes to be the best Quarterback here?</p>
+                            <div class="flex items-center flex-wrap flex-col text-center">
+                                <button type="button"
+                                        class="text-[#63c46d] bg-[#63c46d22] hover:bg-[#63c46d44] pl-8 pr-8 pb-2 pt-2 rounded-md font-bold"
+                                        data-bs-toggle="modal" data-bs-target="#footballGameModal">PLAY</button>
+
+                                <div id="footballGameModal" class="modal fade modal-tall modal-xl" data-bs-backdrop="false"
+                                     data-bs-keyboard="false" tabindex="-1" aria-labelledby="footballGameModalLabel"
+                                     aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <iframe id="gameFrame"
+                                                        src="https://jmoon98.github.io/PagesTest"
+                                                        scrolling="no"></iframe>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -81,30 +205,30 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Second Game Block -->
-            <div id="interactives-quiz" class="p-4 md:w-1/3">
-                <div class="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
-                    <div class="flex justify-center items-center h-48 p-3 bg-gray-200">
-                        <img class="w-full object-contain" src="assets/interactives-quiz-header.gif" alt="quiz logo">
-                    </div>
-                    <div class="p-6 text-center">
-                        <h2 class="placeholder tracking-widest text-xs title-font font-medium text-gray-400 mb-6">Placeholder</h2>
-                        <h1 class="title-font text-xl font-medium text-gray-900 mb-2">USC News Quiz</h1>
-                        <p class="description leading-relaxed mb-6 text-sm">Test your knowledge on the latest news from campus</p>
-                        <div class="flex items-center flex-wrap flex-col text-center">
-                            <a href="https://annenberginteractives.com/2024-2025/quiz" target="_blank"
-                               class="text-[#63c46d] bg-[#63c46d22] hover:bg-[#63c46d44] pl-8 pr-8 pb-2 pt-2 rounded-md font-bold no-underline">PLAY</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
-    </div>
-</section>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-        crossorigin="anonymous"></script>
-</body>
+    </section>
 
+    <div id="footballRules">
+        <h2>How to play:</h2>
+        <img src="https://cloudfront-us-east-1.images.arcpublishing.com/uscannenberg/LKZJIHKB4FCDVFGGSS2LY3BEKA.gif"
+                alt="How to Play">
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+            crossorigin="anonymous"></script>
+
+    <script>
+        const footballGameModal = document.getElementById('footballGameModal');
+        const gameExplanation = document.getElementById('footballRules');
+
+        footballGameModal.addEventListener('shown.bs.modal', function () {
+            gameExplanation.style.display = 'block';
+        });
+
+        footballGameModal.addEventListener('hidden.bs.modal', function () {
+            gameExplanation.style.display = 'none';
+        });
+    </script>
+</body>
 </html>
