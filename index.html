@@ -41,6 +41,33 @@
             min-height: 2.6em;
         }
 
+        #roadyGameModal .modal-content {
+            width: auto;
+            height: auto;
+            border-radius: 8px;
+            padding: 5px;
+            margin-left: -100px;
+            margin-right: -10px;
+       
+        }
+
+        #roadyGameModal .modal-body {
+            padding: 0;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #roadyGameModal .modal-body iframe {
+            width: 720px;
+            height: 1280px;
+            transform: scale(0.6);
+            transform-origin: center;
+            border: none;
+            margin: -256px 0;
+        }
+
         /* Hide football game on small screens */
         @media (max-width: 768px) {
             #football-game, #roady-game {
